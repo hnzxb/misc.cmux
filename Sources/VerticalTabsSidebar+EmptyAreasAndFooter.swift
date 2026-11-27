@@ -412,21 +412,11 @@ struct SidebarDevFooter: View {
     @ObservedObject var fileExplorerState: FileExplorerState
     let modifierKeyMonitor: WindowScopedShortcutHintModifierMonitor
     let onSendFeedback: () -> Void
-    @AppStorage(DevBuildBannerDebugSettings.sidebarBannerVisibleKey)
-    private var showSidebarDevBuildBanner = DevBuildBannerDebugSettings.defaultShowSidebarBanner
 
+    // Personal build: hide the account/help/cloud footer row and the
+    // dev-build banner; settings stay reachable via ⌘, in the app menu.
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            SidebarFooterButtons(updateViewModel: updateViewModel, fileExplorerState: fileExplorerState, modifierKeyMonitor: modifierKeyMonitor, onSendFeedback: onSendFeedback)
-            if showSidebarDevBuildBanner {
-                Text(String(localized: "debug.devBuildBanner.title", defaultValue: "THIS IS A DEV BUILD"))
-                    .cmuxFont(size: 11, weight: .semibold)
-                    .foregroundColor(.red)
-            }
-        }
-        .padding(.leading, 6)
-        .padding(.trailing, 10)
-        .padding(.bottom, 6)
+        EmptyView()
     }
 }
 #endif

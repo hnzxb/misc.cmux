@@ -50,6 +50,8 @@ jobs:
           if [ ! -d "$APP_PATH" ]; then
             echo "app not found at $APP_PATH"; ls -R "$APP_DIR" || true; exit 1
           fi
+          # Personal build: rename the app in the menu bar / About panel.
+          /usr/libexec/PlistBuddy -c 'Set :CFBundleName 我个人专用的cmux' -c 'Set :CFBundleDisplayName 我个人专用的cmux' "$APP_PATH/Contents/Info.plist"
           ditto -c -k --keepParent "$APP_PATH" "$RUNNER_TEMP/cmux-ci-fix.zip"
 
       - name: Upload artifact

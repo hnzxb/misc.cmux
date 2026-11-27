@@ -14,8 +14,11 @@ public enum CloudMachinesFeature: Sendable {
     }
 
     /// Whether Cloud can be discovered on this Mac.
+    /// Personal build: Cloud is permanently unavailable; every Cloud entry
+    /// point (menu, sidebar tab, activation flow) gates off this answer.
     public nonisolated static func isAvailable(policy: ManagedDevicePolicy) -> Bool {
-        !policy.isEnforced(.disableCloud)
+        _ = policy
+        return false
     }
 
     /// Whether Cloud work is enabled after local first-use activation.

@@ -31,10 +31,10 @@ struct AboutPanelView: View {
 
             VStack(alignment: .center, spacing: 32) {
                 VStack(alignment: .center, spacing: 8) {
-                    Text(String(localized: "about.appName", defaultValue: "cmux"))
+                    Text(String(localized: "about.appName", defaultValue: "我个人专用的cmux"))
                         .cmuxFont(.title)
                         .bold()
-                    Text(String(localized: "about.description", defaultValue: "A Ghostty-based terminal with vertical tabs\nand a notification panel for macOS."))
+                    Text(String(localized: "about.description", defaultValue: "这是我个人的cmux,请勿下载,如需使用往官方仓库"))
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                         .cmuxFont(.caption)
