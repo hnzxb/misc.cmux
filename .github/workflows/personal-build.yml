@@ -31,9 +31,6 @@ jobs:
       - name: Setup (pinned Rust, prebuilt GhosttyKit)
         run: ./scripts/setup.sh
 
-      - name: Fetch Metal toolchain
-        run: xcodebuild -downloadComponent MetalToolchain
-
       - name: Build tagged Debug app
         run: |
           set -euo pipefail
