@@ -25,6 +25,9 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Install zig
+        run: ./scripts/install-zig-ci.sh
+
       - name: Setup (pinned Rust, prebuilt GhosttyKit)
         run: ./scripts/setup.sh
 
