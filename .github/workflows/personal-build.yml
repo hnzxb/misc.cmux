@@ -19,6 +19,10 @@ jobs:
     timeout-minutes: 150
     env:
       CMUX_DEV_BACKEND_MODE: local
+      # Our squashed root commit has no upstream history, so the client-commit
+      # resolver cannot find a published cmux-tui client. ef47931's cmux-tui
+      # tree is byte-identical to ours, so pin its published manifest.
+      CMUX_TUI_CLIENT_MANIFEST_URL: https://files.cmux.com/cmux-tui/ef4793126909076c23bf535ae5c661f8a29828a3/manifest.json
     steps:
       - name: Checkout (with submodules)
         uses: actions/checkout@v6
