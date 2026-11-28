@@ -14,11 +14,13 @@ watch:
 
 # 下载最新成功构建的产物到 /tmp/cmux-artifact/ 并解压
 download:
-    @rm -rf /tmp/cmux-artifact && mkdir -p /tmp/cmux-artifact && \
-    RUN=$$(gh run list --repo hnzxb/misc.cmux --workflow personal-build.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId') && \
-    echo "downloading from run $$RUN" && \
-    gh run download $$RUN --repo hnzxb/misc.cmux --name cmux-debug-ci-fix --dir /tmp/cmux-artifact && \
-    unzip -q /tmp/cmux-artifact/cmux-ci-fix.zip -d /tmp/cmux-artifact/unz && \
+    #!/bin/bash
+    set -euo pipefail
+    RUN=$(gh run list --repo hnzxb/misc.cmux --workflow personal-build.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId')
+    echo "downloading from run $RUN"
+    rm -rf /tmp/cmux-artifact && mkdir -p /tmp/cmux-artifact
+    gh run download "$RUN" --repo hnzxb/misc.cmux --name cmux-debug-ci-fix --dir /tmp/cmux-artifact
+    unzip -q /tmp/cmux-artifact/cmux-ci-fix.zip -d /tmp/cmux-artifact/unz
     ls /tmp/cmux-artifact/unz
 
 # 替换 /Applications/cmux.app（旧版归档到 archive/，需用户确认 cmux 可重启）
